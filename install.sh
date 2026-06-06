@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-sudo apt install -y python3-dev libgirepository-1.0-dev libgirepository-2.0-dev libcairo2-dev pkg-config
+sudo apt install -y python3 python3-pip python3-dev libgirepository-1.0-dev libgirepository-2.0-dev libcairo2-dev pkg-config
 sudo mkdir /etc/OpenWin-UAC
 sudo cp -r main.py index.html assets/ /etc/OpenWin-UAC/
 sudo python3 -m venv /etc/OpenWin-UAC/venv
