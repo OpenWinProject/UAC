@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @font-face {
+            font-family: 'Segoe UI';
+            src: url('assets/selawk.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Segoe UI Light';
+            src: url('assets/selawkl.ttf') format('truetype');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, 'Segoe WP', Tahoma, Geneva, Verdana, sans-serif, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, system-ui;
+            user-select: none;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            overflow: hidden;
+            opacity: 1;
+            animation: fadeInBody 0.15s ease-in-out forwards;
+        }
+
+        @keyframes fadeInBody {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #bg-dim {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.4);
+            z-index: -1;
+        }
+
+        .uac-window {
+            background-color: #f2f2f2;
+            width: 480px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            animation: metroZoom 0.4s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes metroZoom {
+            0% {
+                transform: scale(1.05);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .uac-header {
+            background-color: #76bbee;
+            color: #000000;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 24px;
+        }
+
+        .uac-header-text {
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        .uac-body {
+            padding: 24px;
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .uac-details {
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .uac-bold {
+            font-weight: 600;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .uac-input-container {
+            margin-bottom: 24px;
+        }
+
+        .uac-input-container label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .uac-input {
+            width: 100%;
+            height: 32px;
+            border: 1px solid #999999;
+            background-color: #ffffff;
+            padding: 0 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .uac-input:hover {
+            border-color: #666666;
+        }
+
+        .uac-input:focus {
+            border: 2px solid #0078D7;
+            padding: 0 7px;
+        }
+
+        .uac-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            background-color: #f2f2f2;
+            padding: 0 24px 24px 24px;
+        }
+
+        .uac-btn {
+            min-width: 100px;
+            height: 32px;
+            background-color: #bab8b8;
+            border: 2px solid transparent;
+            font-size: 15px;
+            color: #000;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .uac-btn:hover {
+            border-color: #999999;
+        }
+
+        .uac-btn:focus {
+            background-color: #bab8b8;
+            border-color: transparent;
+            outline: 2px solid black;
+            outline-offset: 1px;
+        }
+
+        .app-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .details-link {
+            color: #0078D7;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 24px;
+            display: block;
+        }
+
+        .hidden-details {
+            display: none;
+            font-size: 12px;
+            margin-top: 10px;
+            color: #555;
+        }
+
+        .uac-container-flex {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .uac-text-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .uac-bar {
+            display: flex;
+            flex-direction: row;
+            font-size: 12px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .win-close-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 45px;
+            height: 32px;
+            background-color: transparent;
+            border: none;
+            color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            outline: none;
+            z-index: 10;
+
+        }
+
+        .win-close-btn:hover {
+            background-color: #E81123 !important;
+            color: #FFFFFF !important;
+        }
+
+        .win-close-btn:active {
+            background-color: #F1707A !important;
+            color: #FFFFFF !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="bg-dim"></div>
+
+    <div class="uac-window">
+        <div class="uac-header">
+            <div class="uac-bar">
+                <p>{{LBL_TITLE}}</p>
+                <button class="win-close-btn" tabindex="-1" onclick="cancelar()" aria-label="Fechar">
+                    <svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0,0 L10,10 M10,0 L0,10" fill="none" stroke="currentColor" stroke-width="1" />
+                    </svg>
+                </button>
+            </div>
+            <div class="uac-header-text">
+                {{LBL_HEADER}}
+            </div>
+        </div>
+
+        <div class="uac-body">
+            <div style="display: flex; align-items: center; margin-bottom: 16px;">
+                <img src="{{APP_ICON}}" class="app-icon">
+                <div class="uac-title">
+                    <p style="font-size: 1.2rem;">{{APP_NAME}}</p>
+                </div>
+            </div>
+
+            <div class="uac-details">
+                <p style="margin-bottom: 1px;">{{LBL_VENDOR}}: {{VENDOR}}</p>
+                <p>{{LBL_ORIGIN}}: {{ORIGIN}}</p>
+
+                <a class="details-link" onclick="toggleDetails()">{{LBL_MORE_DETAILS}}</a>
+                <div id="more-info" class="hidden-details">
+                    {{LBL_PATH}}: {{PATH}}
+                </div>
+            </div>
+
+            <div class="uac-input-container">
+                <label for="pass">{{LBL_PASSWORD_REQ}}</label>
+                <input type="password" id="pass" class="uac-input" autofocus autocomplete="off"
+                    placeholder="{{LBL_PWINPUT_PLACEHOLDER}}">
+            </div>
+        </div>
+
+        <div class="uac-footer">
+            <button class="uac-btn" onclick="send()">{{LBL_YES}}</button>
+            <button class="uac-btn" id="uac-btn-no" onclick="cancelar()">{{LBL_NO}}</button>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const button = document.getElementById('uac-btn-no');
+                if (button) {
+                    button.focus();
+                }
+            }, 450);
+        });
+
+        function send() {
+            const pass = document.getElementById('pass').value;
+            if (typeof pywebview !== 'undefined') {
+                pywebview.api.submitPassword(pass);
+            }
+        }
+
+        function cancelar() {
+            if (typeof pywebview !== 'undefined') {
+                pywebview.api.submitPassword(null);
+            }
+        }
+
+        function toggleDetails() {
+            const div = document.getElementById('more-info');
+            div.style.display = div.style.display === 'block' ? 'none' : 'block';
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && document.activeElement === document.getElementById('pass')) send();
+            if (e.key === 'Escape') cancelar();
+        });    
+    </script>
+</body>
+
+</html>
